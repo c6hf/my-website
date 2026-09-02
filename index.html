@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GLORY ROLEPLAY S1</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at center,
+          #ff2020 0%,
+          #8b0000 45%,
+          #180000 100%
+        );
+
+      color: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    /* Red animated glow */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 0, 0, 0.20),
+          transparent 55%
+        );
+
+      animation: backgroundGlow 6s ease-in-out infinite alternate;
+
+      pointer-events: none;
+    }
+
+    @keyframes backgroundGlow {
+      from {
+        transform: scale(0.9);
+        opacity: 0.5;
+      }
+
+      to {
+        transform: scale(1.15);
+        opacity: 1;
+      }
+    }
+
+    /* Main glass box */
+    .container {
+      position: relative;
+      z-index: 2;
+
+      width: 90%;
+      max-width: 650px;
+
+      text-align: center;
+
+      padding: 45px 30px;
+
+      border: 1px solid rgba(255,255,255,0.18);
+
+      border-radius: 25px;
+
+      background: rgba(10, 0, 0, 0.55);
+
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+
+      box-shadow:
+        0 0 30px rgba(255, 0, 0, 0.35),
+        0 0 80px rgba(255, 0, 0, 0.15),
+        inset 0 0 30px rgba(255, 0, 0, 0.05);
+
+      animation: containerEnter 1.2s ease forwards;
+    }
+
+    @keyframes containerEnter {
+      from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Server image */
+    .server-image {
+      width: 180px;
+      height: 180px;
+
+      object-fit: cover;
+
+      border-radius: 20px;
+
+      display: block;
+
+      margin: 0 auto 25px;
+
+      border: 3px solid rgba(255,255,255,0.25);
+
+      box-shadow:
+        0 0 20px rgba(255,0,0,0.8),
+        0 0 45px rgba(255,0,0,0.35);
+
+      animation:
+        imageFloat 4s ease-in-out infinite,
+        imageGlow 2.5s ease-in-out infinite alternate;
+
+      transition: 0.4s ease;
+    }
+
+    @keyframes imageFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes imageGlow {
+      from {
+        box-shadow:
+          0 0 20px rgba(255,0,0,0.6),
+          0 0 40px rgba(255,0,0,0.2);
+      }
+
+      to {
+        box-shadow:
+          0 0 30px rgba(255,0,0,1),
+          0 0 65px rgba(255,0,0,0.45);
+      }
+    }
+
+    .server-image:hover {
+      transform: scale(1.06);
+    }
+
+    /* Title */
+    h1 {
+      font-size: 42px;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 12px;
+
+      text-shadow:
+        0 0 10px rgba(255,0,0,0.9),
+        0 0 25px rgba(255,0,0,0.7),
+        0 0 45px rgba(255,0,0,0.35);
+
+      animation: titleGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from {
+        text-shadow:
+          0 0 10px rgba(255,0,0,0.7),
+          0 0 20px rgba(255,0,0,0.5);
+      }
+
+      to {
+        text-shadow:
+          0 0 15px rgba(255,0,0,1),
+          0 0 35px rgba(255,0,0,0.8);
+      }
+    }
+
+    /* Subtitle */
+    .subtitle {
+      color: #ffb0b0;
+
+      font-size: 15px;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 35px;
+
+      opacity: 0;
+
+      animation: fadeIn 1s ease 0.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Discord button */
+    .discord {
+      position: relative;
+
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 12px;
+
+      width: 100%;
+      max-width: 350px;
+
+      padding: 17px 25px;
+
+      border-radius: 12px;
+
+      background: #5865F2;
+
+      color: white;
+
+      text-decoration: none;
+
+      font-size: 18px;
+
+      font-weight: bold;
+
+      transition: 0.3s ease;
+
+      box-shadow:
+        0 8px 25px rgba(88,101,242,0.35);
+
+      overflow: hidden;
+
+      animation: buttonPulse 3s ease-in-out infinite;
+    }
+
+    /* Shine effect */
+    .discord::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -120%;
+
+      width: 80%;
+      height: 100%;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+      );
+
+      transform: skewX(-20deg);
+
+      animation: buttonShine 3s infinite;
+    }
+
+    @keyframes buttonShine {
+      0% {
+        left: -120%;
+      }
+
+      45%, 100% {
+        left: 140%;
+      }
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% {
+        box-shadow:
+          0 8px 25px rgba(88,101,242,0.35);
+      }
+
+      50% {
+        box-shadow:
+          0 10px 35px rgba(88,101,242,0.65);
+      }
+    }
+
+    .discord:hover {
+      transform: translateY(-5px) scale(1.03);
+
+      box-shadow:
+        0 15px 45px rgba(88,101,242,0.7);
+    }
+
+    .discord-icon {
+      font-size: 25px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 45px;
+
+      padding-top: 20px;
+
+      border-top:
+        1px solid rgba(255,255,255,0.1);
+
+      color: #aaa;
+
+      font-size: 14px;
+    }
+
+    footer span {
+      color: #ff3b3b;
+
+      font-weight: bold;
+
+      text-shadow:
+        0 0 10px rgba(255,0,0,0.6);
+    }
+
+    /* Mobile */
+    @media (max-width: 500px) {
+
+      h1 {
+        font-size: 29px;
+        letter-spacing: 2px;
+      }
+
+      .container {
+        padding: 35px 20px;
+      }
+
+      .server-image {
+        width: 140px;
+        height: 140px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+      }
+
+      .discord {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- SERVER IMAGE -->
+    <img
+      class="server-image"
+      src="https://cdn.discordapp.com/attachments/1503471530019918070/1538614113893351464/file_00000000d1b482439d5c75bfa8f01187.png?ex=6a99bb0e&is=6a98698e&hm=7d5ab8cbab64e02919b90319c2b68c9b318f35c961048f94d1d7f86c6f7f41f3"
+      alt="GLORY ROLEPLAY"
+    >
+
+    <h1>
+      GLORY ROLEPLAY S1
+    </h1>
+
+    <div class="subtitle">
+      WELCOME TO GLORY ROLEPLAY
+    </div>
+
+    <a
+      class="discord"
+      href="https://discord.gg/KRHqre4xY"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="discord-icon">💬</span>
+      JOIN DISCORD
+    </a>
+
+    <footer>
+      Developer <span>c6hf</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>
